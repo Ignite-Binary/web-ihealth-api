@@ -9,6 +9,7 @@ database) Allows on demand consulting
 1. clone repo
 1. cd to root folder
 1. create virtualenv
+1. create test database and application database
 1. `make build`
 
 ## to install requirements
@@ -24,4 +25,9 @@ make run
 ## to run linter
 ```
 make lint
+```
+
+## to run tests
+```
+make test
 ```
