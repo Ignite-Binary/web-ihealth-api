@@ -1,11 +1,8 @@
 from flask import Flask
-from flask_restplus import Api
 from config import config
-from api.views.users import User
-
-api = Api()
-
-api.add_resource(User, '/users')
+from utitilies.database import db
+from utitilies.resources import api
+from utitilies.migrations import migrate
 
 
 def create_app(obj_config):
@@ -13,5 +10,7 @@ def create_app(obj_config):
     app = Flask(__name__)
     app.config.from_object(config[obj_config])
     api.init_app(app)
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     return app

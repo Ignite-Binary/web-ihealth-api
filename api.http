@@ -1,0 +1,35 @@
+### GET all patients ###
+http://127.0.0.1:5000/users/patients
+
+### GET specific patient ###
+http://127.0.0.1:5000/users/patients/3
+
+### CREATE patient ####
+
+POST http://127.0.0.1:5000/users/patients
+Content-Type: application/json
+
+{
+    "user_name": "user2",
+    "first_name": "user",
+    "last_name": "name",
+    "gender": "male",
+    "dob": "2000-01-02",
+    "phone_no": "+254723467193",
+    "email": "swae@gmail.com",
+    "password": "Ab1234"
+}
+
+### UPDATE patient ####
+
+PUT http://127.0.0.1:5000/users/patients/1
+Content-Type: application/json
+
+{
+    "last_name": "juma"
+}
+
+### DELETE patient ####
+
+DELETE  http://127.0.0.1:5000/users/patients/1
+Content-Type: application/json
