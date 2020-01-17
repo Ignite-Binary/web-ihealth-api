@@ -18,7 +18,11 @@ def user_validation(create=True):
     parser.add_argument('gender',
                         type=str,
                         required=create,
-                        choices=('male', 'female'), help='Gender')
+                        choices=(
+                            'male', 'Male', 'MALE' 'female', 'Female', 'FEMALE'
+                        ),
+                        help='Gender',
+                        case_sensitive=False)
     parser.add_argument('dob',
                         type=inputs.date,
                         required=create, help='Date of Birth')
@@ -27,7 +31,7 @@ def user_validation(create=True):
                         required=create, help='Phone number')
     parser.add_argument('email',
                         type=inputs.email(check=True),
-                        required=create, help='Email')
+                        required=create, help='Email', case_sensitive=False)
     parser.add_argument('password',
                         type=inputs.regex(
                             r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,15}$'
