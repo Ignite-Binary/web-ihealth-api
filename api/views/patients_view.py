@@ -28,7 +28,7 @@ class Patients(Resource):
                 existing_user = user_name.user_name
             except Exception:
                 existing_user = user_email.email
-            user_ns.abort(400, existing_user + " already exists!")
+            user_ns.abort(400, f"{existing_user} already exists!")
         patient['status'] = "active"
         patient['role'] = 4
         new_patient = User(patient)
@@ -43,7 +43,7 @@ class Patient(Resource):
         patient = User.query.filter_by(
             id=patient_id,
             status='active',
-            role=4).first_or_404(description='Patient not Found')
+            role=4).first_or_404('Patient not Found')
         return patient
 
     @user_ns.expect(user_schema)
@@ -53,7 +53,7 @@ class Patient(Resource):
         patient = User.query.filter_by(
             id=patient_id,
             status='active',
-            role=4).first_or_404(description='Patient not Found')
+            role=4).first_or_404('Patient not Found')
         user_validation(False)
         updated_patient = update_fields(patient, patient_updates)
         updated_patient.save()
@@ -63,7 +63,7 @@ class Patient(Resource):
         patient = User.query.filter_by(
             id=patient_id,
             status='active',
-            role=4).first_or_404(description='Patient not Found')
+            role=4).first_or_404('Patient not Found')
         patient.status = 'deleted'
         patient.save()
         return {"message": "patient deleted"}, 204
