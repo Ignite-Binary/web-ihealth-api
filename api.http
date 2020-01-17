@@ -2,7 +2,7 @@
 http://127.0.0.1:5000/users/patients
 
 ### GET specific patient ###
-http://127.0.0.1:5000/users/patients/3
+http://127.0.0.1:5000/users/patients/20
 
 ### CREATE patient ####
 
@@ -10,14 +10,15 @@ POST http://127.0.0.1:5000/users/patients
 Content-Type: application/json
 
 {
-    "user_name": "user2",
+    "user_name": "user3",
     "first_name": "user",
     "last_name": "name",
     "gender": "male",
     "dob": "2000-01-02",
     "phone_no": "+254723467193",
-    "email": "swae@gmail.com",
-    "password": "Ab1234"
+    "email": "swaer@gmail.com",
+    "password": "Ab1234",
+    "status": "active"
 }
 
 ### UPDATE patient ####
@@ -32,4 +33,34 @@ Content-Type: application/json
 ### DELETE patient ####
 
 DELETE  http://127.0.0.1:5000/users/patients/1
+Content-Type: application/json
+
+### GET all roles ###
+http://127.0.0.1:5000/users/roles
+
+### GET specific role ###
+http://127.0.0.1:5000/users/roles/20
+
+### CREATE new role ####
+
+POST http://127.0.0.1:5000/users/roles
+Content-Type: application/json
+
+{
+    "role": "admin",
+    "code": 1
+}
+
+### UPDATE role ####
+
+PUT http://127.0.0.1:5000/users/roles/4
+Content-Type: application/json
+
+{
+    "role": "patient"
+}
+
+### DELETE patient ####
+
+DELETE  http://127.0.0.1:5000/users/roles/2
 Content-Type: application/json

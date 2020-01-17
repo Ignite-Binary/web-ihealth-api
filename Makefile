@@ -1,6 +1,11 @@
+clean:
+	@ echo 'cleaning...'
+	find . -type f -name '*.pyc' -delete
+	find . -type f -name '*.log' -delete
+
 update:
 	@ echo 'updating requirements...'
-	pip freeze > requirements.txt
+	pip freeze | grep -v "pkg-resources" > requirements.txt
 
 install:
 	@ echo 'installing requirements...'
