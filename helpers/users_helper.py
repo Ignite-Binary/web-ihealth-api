@@ -1,4 +1,4 @@
-from flask_restplus import reqparse, inputs, fields
+from flask_restplus import reqparse, inputs, fields, abort
 
 
 def user_validation(create=True):
@@ -39,6 +39,11 @@ def user_validation(create=True):
     return parser.parse_args(strict=True)
 
 
+def verify_owner(owner, identity):
+    if owner != identity:
+        abort(403, 'You are not authorized!')
+
+
 user_schema = {
     'id': fields.Integer(description='The user unique identifier'),
     'user_name': fields.String(description='User unique name'),
@@ -49,7 +54,8 @@ user_schema = {
     'dob': fields.Date(description='User date of birth'),
     'phone_no': fields.String(description='User phone number'),
     'email': fields.String(description='User email address'),
-    'role': fields.Integer(description='User role'),
+    'role': fields.String(
+        attribute=lambda x: x.user_role.role, description='User role'),
     'status': fields.String(
-        attribute=lambda x: x.status.value, description='User status'),
+        attribute=lambda x: x.status.value, description='User status')
 }

@@ -10,5 +10,5 @@ class StatusType(enum.Enum):
 
 
 class GenderType(enum.Enum):
-    male = "M"
-    female = "F"
+    male = "male"
+    female = "female"
