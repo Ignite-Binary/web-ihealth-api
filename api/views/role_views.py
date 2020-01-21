@@ -4,6 +4,7 @@ from helpers.roles_helper import role_validation, role_schema
 from api.models.roles_model import Role as RoleModel
 from api import role_ns
 from utitilies.database import update_fields, db
+from utitilies.auth import auth_user
 
 
 role_schema = role_ns.model('Role', role_schema)
@@ -11,11 +12,13 @@ role_schema = role_ns.model('Role', role_schema)
 
 @role_ns.route('')
 class Roles(Resource):
+    @auth_user(['admin'])
     @role_ns.marshal_list_with(role_schema, envelope='roles')
     def get(self):
         roles = RoleModel.query.all()
         return roles
 
+    @auth_user(['admin'])
     @role_ns.expect(role_schema)
     @role_ns.marshal_with(role_schema, envelope='role')
     def post(self):
@@ -37,11 +40,13 @@ class Roles(Resource):
 
 @role_ns.route('/<int:role_id>')
 class Role(Resource):
+    @auth_user(['admin'])
     @role_ns.marshal_list_with(role_schema, envelope='role')
     def get(self, role_id):
         role = RoleModel.query.get_or_404(role_id, 'Role not Found')
         return role
 
+    @auth_user(['admin'])
     @role_ns.expect(role_schema)
     @role_ns.marshal_with(role_schema, envelope='role')
     def put(self, role_id):
@@ -56,6 +61,7 @@ class Role(Resource):
             role_ns.abort(403, f"role {role} code cannot be changed!")
         return updated_role
 
+    @auth_user(['admin'])
     def delete(self, role_id):
         role = RoleModel.query.get_or_404(role_id, 'Role not Found')
         try:
