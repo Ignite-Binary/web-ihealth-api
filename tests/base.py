@@ -5,10 +5,15 @@ from flask_testing import TestCase
 from app import db, create_app, redis_client
 from api.models.users_model import User
 from api.models.roles_model import Role
-from api.models.profiles_model import PatientProfile
-from fixtures.user_fixtures import user_1, user_2, admin_user, user_login
-from fixtures.roles_fixtures import role_admin, role_patient, other_role
-from fixtures.profile_fixtures import patient_profile
+from api.models.patient_profile_model import PatientProfile
+from api.models.doctor_profile_model import DoctorProfile
+from fixtures.user_fixtures import (
+    user_1, admin_user, test_doctor, doctor_user, doctor_user_2, user_login)
+from fixtures.roles_fixtures import (
+    role_admin, role_patient, role_doctor, other_role)
+from fixtures.profile_fixtures import (
+    patient_profile, doctor_profile, doc_patient_profile, admin_doc_profile,
+    doc_patient_profile_2)
 
 
 class BaseTestCase(TestCase):
@@ -20,6 +25,7 @@ class BaseTestCase(TestCase):
         self.patient_header = copy.deepcopy(self.headers)
         self.patient_refresh = copy.deepcopy(self.headers)
         self.admin_header = copy.deepcopy(self.headers)
+        self.doctor_header = copy.deepcopy(self.headers)
         app.config['REDIS_URL'] = 'redis://localhost:6379/1'
         return app
 
@@ -33,16 +39,30 @@ class BaseTestCase(TestCase):
             admin_role.save()
             patient_role = Role(role_patient)
             patient_role.save()
+            doctor_role = Role(role_doctor)
+            doctor_role.save()
             new_role = Role(other_role)
             new_role.save()
             user_admin = User(admin_user)
             user_admin.save()
-            patient = User(user_1)
-            patient.save()
-            patient_2 = User(user_2)
-            patient_2.save()
             admin_patient_profile = PatientProfile(patient_profile)
             admin_patient_profile.save()
+            admin_doc = DoctorProfile(admin_doc_profile)
+            admin_doc.save()
+            patient = User(user_1)
+            patient.save()
+            test_doc = User(test_doctor)
+            test_doc.save()
+            test_doc_profile = PatientProfile(doc_patient_profile_2)
+            test_doc_profile.save()
+            user_doctor = User(doctor_user)
+            user_doctor.save()
+            doc_patient_prof = PatientProfile(doc_patient_profile)
+            doc_patient_prof.save()
+            doc_profile = DoctorProfile(doctor_profile)
+            doc_profile.save()
+            user_doctor_2 = User(doctor_user_2)
+            user_doctor_2.save()
             db.session.commit()
 
     def tearDown(self):
@@ -56,6 +76,7 @@ class BaseTestCase(TestCase):
 
 class CommonTestCases(BaseTestCase):
     """ common Tests"""
+
     def patient_login(self):
         response = self.client.post(
             '/users/login',
@@ -66,10 +87,23 @@ class CommonTestCases(BaseTestCase):
              {result['refresh']}"
 
     def admin_login(self):
-        new_login = copy.deepcopy(user_login)
-        new_login['user_name'] = 'john'
+        new_login = {
+            "user_name": "john",
+            "password": "Abc123"
+        }
         response = self.client.post(
             '/users/login',
             data=json.dumps(new_login), headers=self.headers)
         result = json.loads(response.data)
         self.admin_header['Authorization'] = f"Bearer {result['token']}"
+
+    def doctor_login(self):
+        new_login = {
+            "user_name": "gideon",
+            "password": "Abc123"
+        }
+        response = self.client.post(
+            '/users/login',
+            data=json.dumps(new_login), headers=self.headers)
+        result = json.loads(response.data)
+        self.doctor_header['Authorization'] = f"Bearer {result['token']}"

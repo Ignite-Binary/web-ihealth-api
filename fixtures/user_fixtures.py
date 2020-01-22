@@ -42,6 +42,45 @@ admin_user = {
     "status": "active"
 }
 
+test_doctor = {
+    "user_name": "gideon",
+    "first_name": "gideon",
+    "last_name": "masaku",
+    "gender": "male",
+    "dob": "1999-01-02",
+    "phone_no": "+254746738877",
+    "email": "gideon@gmail.com",
+    "password": "Abc123",
+    "role": 3,
+    "status": "active"
+}
+
+doctor_user = {
+    "user_name": "calli",
+    "first_name": "callif",
+    "last_name": "james",
+    "gender": "female",
+    "dob": "1999-01-02",
+    "phone_no": "+254746738877",
+    "email": "calli@gmail.com",
+    "password": "Abc123",
+    "role": 3,
+    "status": "active"
+}
+
+doctor_user_2 = {
+    "user_name": "mary",
+    "first_name": "mary",
+    "last_name": "jane",
+    "gender": "female",
+    "dob": "1999-01-02",
+    "phone_no": "+254746738877",
+    "email": "mary@gmail.com",
+    "password": "Abc123",
+    "role": 3,
+    "status": "active"
+}
+
 create_user_1 = {
     "user_name": "Juma",
     "first_name": "Peter",

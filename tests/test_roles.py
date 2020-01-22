@@ -69,7 +69,7 @@ class TestRole(BaseTestCase):
     def test_delete_role(self):
         CommonTestCases.admin_login(self)
         response = self.client.delete(
-            '/users/roles/3', headers=self.admin_header)
+            '/users/roles/4', headers=self.admin_header)
         self.assertStatus(response, 204)
 
     def test_delete_attached_role(self):
@@ -77,5 +77,5 @@ class TestRole(BaseTestCase):
         response = self.client.delete(
             '/users/roles/2', headers=self.admin_header)
         result = json.loads(response.data)
-        self.assertStatus(response, 403)
+        self.assert_403(response, 403)
         self.assertIn('cannot be deleted', str(result))

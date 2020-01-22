@@ -18,7 +18,7 @@ class Utility(object):
 
 class Base(db.Model, Utility):
     __abstract__ = True
-
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     created_on = db.Column(db.DateTime, default=db.func.now())
     updated_on = db.Column(
         db.DateTime, default=db.func.now(), onupdate=db.func.now())

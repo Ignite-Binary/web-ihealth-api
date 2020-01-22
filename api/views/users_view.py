@@ -1,17 +1,18 @@
 import os
 from werkzeug.datastructures import FileStorage
-from flask_restplus import Resource
+from flask_restplus import Resource, reqparse
 from flask_jwt_extended import (
     get_raw_jwt, jwt_required, jwt_refresh_token_required,
     get_jwt_identity, current_user)
-from helpers.users_helper import (
-    user_validation, user_schema, allowed_images, verify_owner)
-from api.models.users_model import User
-from api.models.roles_model import Role
 from api import user_ns
 from utitilies.database import update_fields
 from utitilies.auth import auth_user
 from utitilies.redis import redis_client
+from helpers.validators import user_validation
+from helpers.users_helper import allowed_images, verify_owner
+from api.models.users_model import User
+from api.models.roles_model import Role
+from api.models.schemas.user_schema import user_schema
 
 
 user_schema = user_ns.model('User', user_schema)
@@ -41,7 +42,8 @@ class UsersView(Resource):
     @user_ns.expect(user_schema)
     @user_ns.marshal_with(user_schema, envelope='user')
     def post(self):
-        user = user_validation()
+        user = user_validation(reqparse.RequestParser(
+            trim=True, bundle_errors=True))
         user_name = User.query.filter_by(
             user_name=user['user_name'], status='active').first()
         user_email = User.query.filter_by(
@@ -81,7 +83,8 @@ class UserView(Resource):
             status='active').first_or_404('User not Found')
         if current_user.user_role.role == 'patient':
             verify_owner(user.id, current_user.id)
-        user_validation(False)
+        user_validation(reqparse.RequestParser(
+            trim=True, bundle_errors=True), False)
         role_update = user_updates.get('role')
         if role_update:
             Role.query.filter_by(

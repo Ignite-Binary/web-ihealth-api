@@ -68,7 +68,7 @@ class TestPatient(BaseTestCase):
         self.assert200(response)
         self.assertIn('mombasa Rd', str(result))
 
-    @patch('api.views.profiles_view.save_temp_image')
+    @patch('api.views.patient_profile_view.save_temp_image')
     def test_update_patient_profile_pic(self, saved_image):
         CommonTestCases.admin_login(self)
         saved_image.return_value = "profile_pic_1.jpg"
@@ -112,6 +112,14 @@ class TestPatient(BaseTestCase):
 
     def test_delete_patient_profile(self):
         CommonTestCases.admin_login(self)
-        response = self.client.delete('/profiles/patients/1',
+        response = self.client.delete('/profiles/patients/3',
                                       headers=self.admin_header)
         self.assertStatus(response, 204)
+
+    def test_delete_attached_patient_profile(self):
+        CommonTestCases.admin_login(self)
+        response = self.client.delete('/profiles/patients/4',
+                                      headers=self.admin_header)
+        result = json.loads(response.data)
+        self.assert_403(response, 403)
+        self.assertIn('cannot be deleted', str(result))

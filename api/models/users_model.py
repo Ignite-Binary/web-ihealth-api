@@ -18,7 +18,6 @@ PASSLIB_CONTEXT = CryptContext(
 
 class User(Base):
     __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_name = db.Column(db.String(250), unique=True, nullable=False)
     first_name = db.Column(db.String(250), nullable=False)
     last_name = db.Column(db.String(250), nullable=False)
