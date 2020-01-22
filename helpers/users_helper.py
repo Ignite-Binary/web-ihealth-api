@@ -1,4 +1,4 @@
-from flask_restplus import reqparse, inputs, fields
+from flask_restplus import reqparse, inputs, fields, abort
 
 
 def user_validation(create=True):
@@ -18,7 +18,11 @@ def user_validation(create=True):
     parser.add_argument('gender',
                         type=str,
                         required=create,
-                        choices=('male', 'female'), help='Gender')
+                        choices=(
+                            'male', 'Male', 'MALE' 'female', 'Female', 'FEMALE'
+                        ),
+                        help='Gender',
+                        case_sensitive=False)
     parser.add_argument('dob',
                         type=inputs.date,
                         required=create, help='Date of Birth')
@@ -27,12 +31,17 @@ def user_validation(create=True):
                         required=create, help='Phone number')
     parser.add_argument('email',
                         type=inputs.email(check=True),
-                        required=create, help='Email')
+                        required=create, help='Email', case_sensitive=False)
     parser.add_argument('password',
                         type=inputs.regex(
                             r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,15}$'
                         ), required=create, help='Password')
     return parser.parse_args(strict=True)
+
+
+def verify_owner(owner, identity):
+    if owner != identity:
+        abort(403, 'You are not authorized!')
 
 
 user_schema = {
@@ -45,7 +54,8 @@ user_schema = {
     'dob': fields.Date(description='User date of birth'),
     'phone_no': fields.String(description='User phone number'),
     'email': fields.String(description='User email address'),
-    'role': fields.Integer(description='User role'),
+    'role': fields.String(
+        attribute=lambda x: x.user_role.role, description='User role'),
     'status': fields.String(
-        attribute=lambda x: x.status.value, description='User status'),
+        attribute=lambda x: x.status.value, description='User status')
 }
