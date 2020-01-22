@@ -60,8 +60,6 @@ stages:
 
     - task: WhiteSource Bolt@20
 
-
-    - task: SonarCloudAnalyze@1
       
 
     - task: PublishCodeCoverageResults@1
