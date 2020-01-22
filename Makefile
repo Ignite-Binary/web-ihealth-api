@@ -3,13 +3,19 @@ clean:
 	find . -type f -name '*.pyc' -delete
 	find . -type f -name '*.log' -delete
 
+init-db:
+	@ echo 'initializing database...'
+	flask db stamp base
+	flask db upgrade head
+
 update:
 	@ echo 'updating requirements...'
 	pip freeze | grep -v "pkg-resources" > requirements.txt
 
 install:
 	@ echo 'installing requirements...'
-	python -m pip install --upgrade pip
+	pip install --upgrade pip
+	pip install --upgrade pip setuptools
 	pip install -r requirements.txt
 
 test:
@@ -19,7 +25,7 @@ run:
 	@ echo 'starting server...'
 	python manage.py runserver
 
-build: install run
+init-app: init-db install run
 
 lint:
 	@ echo 'linting...'
