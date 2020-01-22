@@ -52,14 +52,10 @@ stages:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python version'
 
-    - task: VSTest@2
-      inputs:
-        testSelector: 'testAssemblies'
-        testAssemblyVer2: |
-          **\*test*.dll
-          !**\*TestAdapter.dll
-          !**\obj\**
-        searchFolder: '$(System.DefaultWorkingDirectory)'
+    - script: |
+        python -m pip install flake8
+        flake8 .
+      displayName: 'Run lint tests'
 
     - task: PublishTestResults@2
       condition: succeededOrFailed()
