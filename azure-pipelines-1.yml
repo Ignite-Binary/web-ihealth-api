@@ -51,12 +51,6 @@ stages:
       inputs:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python version'
-
-    - script: pip install tox
-      displayName: 'Install Tox'
-
-    - script: tox -e py
-      displayName: 'Run Tox'
       
     - task: PublishTestResults@2
       condition: succeededOrFailed()
