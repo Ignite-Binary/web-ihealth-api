@@ -59,6 +59,9 @@ stages:
         testRunTitle: 'Publish test results for Python $(python.version)'
 
     - task: WhiteSource Bolt@20
+
+
+    - task: SonarCloudAnalyze@1
       
 
     - task: PublishCodeCoverageResults@1
