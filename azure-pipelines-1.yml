@@ -39,7 +39,7 @@ stages:
       displayName: 'Use Python $(pythonVersion)'
     
     - script: |
-        python -m venv antenv
+        python3 -m venv antenv
         source antenv/bin/activate
         make install
       workingDirectory: $(projectRoot)
