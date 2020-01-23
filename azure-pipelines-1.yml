@@ -45,7 +45,6 @@ stages:
         pip install setup
         pip install -r requirements.txt
         make lint
-        make test
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
