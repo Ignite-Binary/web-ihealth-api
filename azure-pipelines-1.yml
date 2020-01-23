@@ -48,6 +48,12 @@ stages:
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
+    - script: pip install tox
+      displayName: 'Install Tox'
+
+    - script: tox -e py
+      displayName: 'Run Tox'
+      
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(pythonVersion)'
