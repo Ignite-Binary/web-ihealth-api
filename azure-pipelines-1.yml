@@ -44,15 +44,13 @@ stages:
         python -m pip install --upgrade pip
         pip install setup
         pip install -r requirements.txt
-        make lint
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
-    - script: pip install tox
-      displayName: 'Install Tox'
-
-    - script: tox -e py
-      displayName: 'Run Tox'
+    - script: |
+        python -m pip install flake8
+        flake8 .
+      displayName: 'Run lint tests'
       
     - task: UsePythonVersion@0
       inputs:
