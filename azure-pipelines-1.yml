@@ -96,6 +96,9 @@ stages:
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
 
 
+
+
+
 - stage: Test
   displayName: 'Deploy Web App to test environment'
   dependsOn: Build
@@ -109,6 +112,8 @@ stages:
       runOnce:
         deploy:
           steps:   
+
+          - task: WhiteSource Bolt@20
 
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : ignite-backend-Test'
