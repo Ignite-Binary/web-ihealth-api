@@ -29,6 +29,9 @@ variables:
   # Python version: 3.7
   pythonVersion: '3.7'
 
+
+
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -67,6 +70,9 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
+
+
+
 - stage: Dev
   displayName: 'Deploy Web App to dev'
   dependsOn: Build
@@ -89,7 +95,9 @@ stages:
               appName: $(webAppNameDev)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
 
-          
+
+
+
 
 - stage: Test
   displayName: 'Deploy Web App to test environment'
@@ -105,6 +113,8 @@ stages:
         deploy:
           steps:   
 
+          - task: WhiteSource Bolt@20
+
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : ignite-backend-Test'
             inputs:
@@ -112,6 +122,11 @@ stages:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppNameTest)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+
+
+
+
+
 
 - stage: Staging
   displayName: 'Deploy Web App to staging environment'
