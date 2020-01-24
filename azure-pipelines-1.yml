@@ -101,7 +101,7 @@ stages:
 
 - stage: Test
   displayName: 'Deploy Web App to test environment'
-  dependsOn: Build
+  dependsOn: Dev
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
@@ -130,7 +130,7 @@ stages:
 
 - stage: Staging
   displayName: 'Deploy Web App to staging environment'
-  dependsOn: Build
+  dependsOn: Test
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
