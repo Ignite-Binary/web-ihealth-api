@@ -1,6 +1,6 @@
 ### User Login ####
 
-POST http://127.0.0.1:5000/users/login
+POST https://ignite-backend.azurewebsites.net/users/login
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Refresh access tokens ###
-http://127.0.0.1:5000/users/refresh
+https://ignite-backend.azurewebsites.net/users/refresh
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MTMxNTYsIm5iZiI6MTU3OTUxMzE1NiwianRpIjoiZWQ3ZThiMzktMTdlOS00N2VjLThlYWMtMDQzYWMyOTg1Njk1IiwiZXhwIjoxNTc5Njg1OTU2LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.l6Eru82G4jMasDmeHskp6_vI7bLCYCpM3x_KFSGfdjM
 
 ### User logout ###
@@ -17,11 +17,11 @@ DELETE http://127.0.0.1:5000/users/logout
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MDk0MjksIm5iZiI6MTU3OTUwOTQyOSwianRpIjoiZWUyYzBhMjAtOWUwMy00NTA0LWI0ODUtNzMxM2I0MmY5MTcxIiwiZXhwIjoxNTc5NTEwMzI5LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6InBhdGllbnQifX0.G-dQd_zFWyaPe2GfHWdkvzwutjK8tql4iXXtSBx6Bc0
 
 ### Revoke refresh token ###
-DELETE http://127.0.0.1:5000/users/logout_refresh
+DELETE https://ignite-backend.azurewebsites.net/users/logout_refresh
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MTMxNTYsIm5iZiI6MTU3OTUxMzE1NiwianRpIjoiZWQ3ZThiMzktMTdlOS00N2VjLThlYWMtMDQzYWMyOTg1Njk1IiwiZXhwIjoxNTc5Njg1OTU2LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.l6Eru82G4jMasDmeHskp6_vI7bLCYCpM3x_KFSGfdjM
 
 ### GET all patients ###
-http://127.0.0.1:5000/users/patients
+http:https://ignite-backend.azurewebsites.net/users/patients
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MDk0MjksIm5iZiI6MTU3OTUwOTQyOSwianRpIjoiZWUyYzBhMjAtOWUwMy00NTA0LWI0ODUtNzMxM2I0MmY5MTcxIiwiZXhwIjoxNTc5NTEwMzI5LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6InBhdGllbnQifX0.G-dQd_zFWyaPe2GfHWdkvzwutjK8tql4iXXtSBx6Bc0
 
 ### GET specific patient ###
@@ -30,7 +30,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk2MDgwM
 
 ### CREATE patient ####
 
-POST http://127.0.0.1:5000/users/patients
+POST https://ignite-backend.azurewebsites.net/users/patients
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 ### UPDATE patient ####
 
-PUT http://127.0.0.1:5000/users/patients/1
+PUT https://ignite-backend.azurewebsites.net/users/patients/1
 Content-Type: application/json
 
 {
@@ -56,18 +56,18 @@ Content-Type: application/json
 
 ### DELETE patient ####
 
-DELETE  http://127.0.0.1:5000/users/patients/1
+DELETE  https://ignite-backend.azurewebsites.net/users/patients/1
 Content-Type: application/json
 
 ### GET all roles ###
-http://127.0.0.1:5000/users/roles
+https://ignite-backend.azurewebsites.net/users/roles
 
 ### GET specific role ###
 http://127.0.0.1:5000/users/roles/20
 
 ### CREATE new role ####
 
-POST http://127.0.0.1:5000/users/roles
+POST https://ignite-backend.azurewebsites.net/users/roles
 Content-Type: application/json
 
 {
@@ -77,7 +77,7 @@ Content-Type: application/json
 
 ### UPDATE role ####
 
-PUT http://127.0.0.1:5000/users/roles/4
+PUT https://ignite-backend.azurewebsites.net/users/roles/4
 Content-Type: application/json
 
 {
@@ -86,5 +86,5 @@ Content-Type: application/json
 
 ### DELETE patient ####
 
-DELETE  http://127.0.0.1:5000/users/roles/2
+DELETE  https://ignite-backend.azurewebsites.net/users/roles/2
 Content-Type: application/json
