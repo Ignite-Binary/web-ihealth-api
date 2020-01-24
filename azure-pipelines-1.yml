@@ -101,7 +101,7 @@ stages:
 
 - stage: Test
   displayName: 'Deploy Web App to test environment'
-  dependsOn: Build
+  dependsOn: Dev
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
