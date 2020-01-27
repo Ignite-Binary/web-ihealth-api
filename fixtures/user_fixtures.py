@@ -1,3 +1,8 @@
+import io
+
+image_upload = {"profile_pic": (io.BytesIO(b"test image"), 'test.png')}
+invalid_image = {"profile_pic": (io.BytesIO(b"invalid image"), 'test.txt')}
+
 user_1 = {
     "user_name": "Peter",
     "first_name": "Peter",
@@ -31,7 +36,7 @@ admin_user = {
     "gender": "male",
     "dob": "1999-01-02",
     "phone_no": "+254746738877",
-    "email": "peter@gmail.com",
+    "email": "john@gmail.com",
     "password": "Abc123",
     "role": 1,
     "status": "active"

@@ -5,8 +5,10 @@ from flask_testing import TestCase
 from app import db, create_app, redis_client
 from api.models.users_model import User
 from api.models.roles_model import Role
+from api.models.profiles_model import PatientProfile
 from fixtures.user_fixtures import user_1, user_2, admin_user, user_login
 from fixtures.roles_fixtures import role_admin, role_patient, other_role
+from fixtures.profile_fixtures import patient_profile
 
 
 class BaseTestCase(TestCase):
@@ -39,6 +41,8 @@ class BaseTestCase(TestCase):
             patient.save()
             patient_2 = User(user_2)
             patient_2.save()
+            admin_patient_profile = PatientProfile(patient_profile)
+            admin_patient_profile.save()
             db.session.commit()
 
     def tearDown(self):
@@ -52,7 +56,7 @@ class BaseTestCase(TestCase):
 
 class CommonTestCases(BaseTestCase):
     """ common Tests"""
-    def user_login(self):
+    def patient_login(self):
         response = self.client.post(
             '/users/login',
             data=json.dumps(user_login), headers=self.headers)

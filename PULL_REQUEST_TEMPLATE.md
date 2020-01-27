@@ -21,8 +21,8 @@ Explain what you have changed, and why.
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [x] New and existing tests pass locally with my changes
 
-## AZURE ##
+**AZURE**
 [ID](link)
 
-## Relevant screenshots: ##
+**Relevant screenshots**
  

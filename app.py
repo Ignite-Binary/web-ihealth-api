@@ -13,6 +13,7 @@ def create_app(obj_config):
     app.config.from_object(config[obj_config])
     app.config['JWT_BLACKLIST_ENABLED'] = True
     app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
+    app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
     jwt.init_app(app)
     api.init_app(app)
     db.init_app(app)

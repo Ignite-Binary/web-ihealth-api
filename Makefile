@@ -8,6 +8,15 @@ init-db:
 	flask db stamp base
 	flask db upgrade head
 
+update-db:
+	@ echo 'updating database...'
+	flask db upgrade head
+
+migrate:
+	@ echo 'creating migrations...'
+	flask db stamp head
+	flask db migrate --message="$(message)"
+
 update:
 	@ echo 'updating requirements...'
 	pip freeze | grep -v "pkg-resources" > requirements.txt
