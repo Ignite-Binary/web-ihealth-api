@@ -1,6 +1,6 @@
 ### User Login ####
 
-POST http://127.0.0.1:5000/users/login
+POST https://127.0.0.1:5000/users/login
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Refresh access tokens ###
-http://127.0.0.1:5000/users/refresh
+https://127.0.0.1:5000/users/refresh
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MTMxNTYsIm5iZiI6MTU3OTUxMzE1NiwianRpIjoiZWQ3ZThiMzktMTdlOS00N2VjLThlYWMtMDQzYWMyOTg1Njk1IiwiZXhwIjoxNTc5Njg1OTU2LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.l6Eru82G4jMasDmeHskp6_vI7bLCYCpM3x_KFSGfdjM
 
 ### User logout ###
@@ -17,12 +17,15 @@ DELETE http://127.0.0.1:5000/users/logout
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MDk0MjksIm5iZiI6MTU3OTUwOTQyOSwianRpIjoiZWUyYzBhMjAtOWUwMy00NTA0LWI0ODUtNzMxM2I0MmY5MTcxIiwiZXhwIjoxNTc5NTEwMzI5LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6InBhdGllbnQifX0.G-dQd_zFWyaPe2GfHWdkvzwutjK8tql4iXXtSBx6Bc0
 
 ### Revoke refresh token ###
-DELETE http://127.0.0.1:5000/users/logout_refresh
+DELETE https://127.0.0.1:5000/users/logout_refresh
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MTMxNTYsIm5iZiI6MTU3OTUxMzE1NiwianRpIjoiZWQ3ZThiMzktMTdlOS00N2VjLThlYWMtMDQzYWMyOTg1Njk1IiwiZXhwIjoxNTc5Njg1OTU2LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.l6Eru82G4jMasDmeHskp6_vI7bLCYCpM3x_KFSGfdjM
+
+#####################################################
+#####################################################
 
 ### GET all patients ###
 http://127.0.0.1:5000/users/patients
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk1MDk0MjksIm5iZiI6MTU3OTUwOTQyOSwianRpIjoiZWUyYzBhMjAtOWUwMy00NTA0LWI0ODUtNzMxM2I0MmY5MTcxIiwiZXhwIjoxNTc5NTEwMzI5LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6InBhdGllbnQifX0.G-dQd_zFWyaPe2GfHWdkvzwutjK8tql4iXXtSBx6Bc0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk4NTcyNzgsIm5iZiI6MTU3OTg1NzI3OCwianRpIjoiNTUwZjczNDAtNWY5My00ZWM3LWFmNjItZDU5MDU1YzVmNDQzIiwiZXhwIjoxNTc5ODU4MTc4LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.UuDyIpGl5agYM5WaPLTo2H3S8cgJ2Or1E-jAz2UIQkw
 
 ### GET specific patient ###
 http://127.0.0.1:5000/users/patients/3
@@ -30,7 +33,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk2MDgwM
 
 ### CREATE patient ####
 
-POST http://127.0.0.1:5000/users/patients
+POST https://127.0.0.1:5000/users/patients
 Content-Type: application/json
 
 {
@@ -47,7 +50,7 @@ Content-Type: application/json
 
 ### UPDATE patient ####
 
-PUT http://127.0.0.1:5000/users/patients/1
+PUT https://127.0.0.1:5000/users/patients/1
 Content-Type: application/json
 
 {
@@ -56,18 +59,60 @@ Content-Type: application/json
 
 ### DELETE patient ####
 
-DELETE  http://127.0.0.1:5000/users/patients/1
+DELETE  https://127.0.0.1:5000/users/patients/1
 Content-Type: application/json
 
+#####################################################
+#####################################################
+
+### GET patient profiles ###
+http://127.0.0.1:5000/profiles/patients
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODAxMDk1ODYsIm5iZiI6MTU4MDEwOTU4NiwianRpIjoiNTY1YmE2MzQtYWFiOC00ZjcxLWExNjAtYjQ4YWNjYmY1MjUyIiwiZXhwIjoxNTgwMTEwNDg2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.zZS6kKC1xRmGT5RJaoBeLH2pMBFekBsZk_RVkJUH-Hw
+
+### CREATE patient profile ####
+POST http://127.0.0.1:5000/profiles/patients
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk4NTQ3MTgsIm5iZiI6MTU3OTg1NDcxOCwianRpIjoiNWJlZDlmOTItMDE0Yy00OGQxLWIwYWQtOWViMDc0NjU0YzRiIiwiZXhwIjoxNTc5ODU1NjE4LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19._XPf09xuOXextigsa9mPzsdrO53C_tFx23uoJ5DY10Q
+
+{
+    "profile_pic": "user3.jpg",
+    "country": "user",
+    "state": "name",
+    "location": "male"
+}
+
+### GET specific patient profile ###
+http://127.0.0.1:5000/profiles/patients/3
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk4NTQ3MTgsIm5iZiI6MTU3OTg1NDcxOCwianRpIjoiNWJlZDlmOTItMDE0Yy00OGQxLWIwYWQtOWViMDc0NjU0YzRiIiwiZXhwIjoxNTc5ODU1NjE4LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19._XPf09xuOXextigsa9mPzsdrO53C_tFx23uoJ5DY10Q
+
+### UPDATE patient profile ####
+
+PUT http://127.0.0.1:5000/profiles/patients/1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk4NTc3OTgsIm5iZiI6MTU3OTg1Nzc5OCwianRpIjoiODk2YTRmZGQtOWQ1ZC00YTgxLWFiNTMtN2U1NDBkZGRkYWVjIiwiZXhwIjoxNTc5ODU4Njk4LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.8pVbRCt_sH8sP8wIp2ZzQCxu06R9xSlC-by0j1sBT6o
+
+{
+    "country": "kenya"
+}
+
+### DELETE patient profile ####
+
+DELETE  http://127.0.0.1:5000/profiles/patients/3
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk3Njk1MzEsIm5iZiI6MTU3OTc2OTUzMSwianRpIjoiNGNmNjI1Y2QtMzJiOS00YWM4LWJmMGQtN2M3ODY1YzQyYzdkIiwiZXhwIjoxNTc5NzcwNDMxLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.uIluIBmCp3SJTS64T0b0TyZPuZ_LoZSOe-8hN0J4qJU
+
+#####################################################
+#####################################################
+
 ### GET all roles ###
-http://127.0.0.1:5000/users/roles
+https://127.0.0.1:5000/users/roles
 
 ### GET specific role ###
 http://127.0.0.1:5000/users/roles/20
 
 ### CREATE new role ####
 
-POST http://127.0.0.1:5000/users/roles
+POST https://127.0.0.1:5000/users/roles
 Content-Type: application/json
 
 {
@@ -77,14 +122,14 @@ Content-Type: application/json
 
 ### UPDATE role ####
 
-PUT http://127.0.0.1:5000/users/roles/4
+PUT https://127.0.0.1:5000/users/roles/4
 Content-Type: application/json
 
 {
     "role": "patient"
 }
 
-### DELETE patient ####
+### DELETE role ####
 
-DELETE  http://127.0.0.1:5000/users/roles/2
+DELETE  https://127.0.0.1:5000/users/roles/2
 Content-Type: application/json

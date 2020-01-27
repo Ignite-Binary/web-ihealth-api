@@ -1,4 +1,3 @@
-from sqlalchemy.exc import IntegrityError
 from flask_restplus import Resource
 from helpers.roles_helper import role_validation, role_schema
 from api.models.roles_model import Role as RoleModel
@@ -56,7 +55,7 @@ class Role(Resource):
         updated_role = update_fields(role, role_updates)
         try:
             updated_role.save()
-        except IntegrityError:
+        except Exception:
             db.session.rollback()
             role_ns.abort(403, f"role {role} code cannot be changed!")
         return updated_role
@@ -66,7 +65,7 @@ class Role(Resource):
         role = RoleModel.query.get_or_404(role_id, 'Role not Found')
         try:
             role.delete()
-        except IntegrityError:
+        except Exception:
             db.session.rollback()
             role_ns.abort(403, f"role {role} cannot be deleted!")
         return {"message": "role deleted"}, 204

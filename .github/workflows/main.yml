@@ -1,11 +1,11 @@
-name: CI
+name: Build
 
 on:
   push:
-    branches: 
+    branches:
       - master
   pull_request:
-    branches: 
+    branches:
       - develop
 
 jobs:
