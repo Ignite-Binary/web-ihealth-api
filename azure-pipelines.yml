@@ -11,7 +11,7 @@ variables:
   azureServiceConnectionId: 'a57a9bf9-b5a2-42ae-b2f9-8f1a6a983ec4'
   
   # Web app name
-  webAppNameDev: 'ignite-backend'
+  webAppNameDev: 'ihealth'
   webAppNameTest: 'ignite-backend-Test'
   webAppNameStaging: 'ignite-backend-staging'
 
@@ -19,7 +19,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentNameDev: 'ignite-backend'
+  environmentNameDev: 'ihealth'
   environmentNameTest: 'ignite-backend-test'
   environmentNameStaging: 'ignite-backend-staging'
 
