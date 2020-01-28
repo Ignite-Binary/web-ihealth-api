@@ -41,7 +41,7 @@ stages:
     - script: |
         python -m venv antenv
         source antenv/bin/activate
-        make instal
+        make install
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
