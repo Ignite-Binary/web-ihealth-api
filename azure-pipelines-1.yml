@@ -11,17 +11,15 @@ variables:
   azureServiceConnectionId: 'a57a9bf9-b5a2-42ae-b2f9-8f1a6a983ec4'
   
   # Web app name
-  webAppNameDev: 'ignite-backend'
-  webAppNameTest: 'ignite-backend-Test'
-  webAppNameStaging: 'ignite-backend-staging'
+  webAppNameDev: 'ihealth'
+
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentNameDev: 'ignite-backend'
-  environmentNameTest: 'ignite-backend-test'
-  environmentNameStaging: 'ignite-backend-staging'
+  environmentNameDev: 'ihealth'
+
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -99,54 +97,3 @@ stages:
 
 
 
-- stage: Test
-  displayName: 'Deploy Web App to test environment'
-  dependsOn: Dev
-  condition: succeeded()
-  jobs:
-  - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentNameTest)
-    strategy:
-      runOnce:
-        deploy:
-          steps:   
-
-          - task: WhiteSource Bolt@20
-
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : ignite-backend-Test'
-            inputs:
-              appType: webAppLinux
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppNameTest)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-
-
-
-
-
-
-- stage: Staging
-  displayName: 'Deploy Web App to staging environment'
-  dependsOn: Test
-  condition: succeeded()
-  jobs:
-  - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentNameStaging)
-    strategy:
-      runOnce:
-        deploy:
-          steps:   
-
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : ignite-backend-Staging'
-            inputs:
-              appType: webAppLinux
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppNameStaging)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-      
