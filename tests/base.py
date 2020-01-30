@@ -5,6 +5,8 @@ from flask_testing import TestCase
 from app import db, create_app, redis_client
 from api.models.users_model import User
 from api.models.roles_model import Role
+from api.models.facilities_model import Facility
+from fixtures.facility_fixtures import facility_1
 from api.models.patient_profile_model import PatientProfile
 from api.models.doctor_profile_model import DoctorProfile
 from fixtures.user_fixtures import (
@@ -45,6 +47,8 @@ class BaseTestCase(TestCase):
             new_role.save()
             user_admin = User(admin_user)
             user_admin.save()
+            facility = Facility(facility_1)
+            facility.save()
             admin_patient_profile = PatientProfile(patient_profile)
             admin_patient_profile.save()
             admin_doc = DoctorProfile(admin_doc_profile)

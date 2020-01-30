@@ -23,6 +23,7 @@ logger = logging.getLogger('alembic.env')
 # target_metadata = mymodel.Base.metadata
 from api.models.roles_model import Role
 from api.models.users_model import User
+from api.models.facilities_model import Facility    
 from api.models.patient_profile_model import PatientProfile
 from api.models.doctor_profile_model import DoctorProfile
 from flask import current_app

@@ -42,7 +42,8 @@ class TestRole(BaseTestCase):
 
     def test_fetch_role(self):
         CommonTestCases.admin_login(self)
-        response = self.client.get('/users/roles/1', headers=self.admin_header)
+        response = self.client.get('/users/roles/1',
+                                   headers=self.admin_header)
         result = json.loads(response.data)
         self.assert200(response)
         self.assertIn('admin', str(result))

@@ -1,9 +1,7 @@
 """create roles and users tables
-
 Revision ID: d133607c824c
-Revises: 
+Revises:
 Create Date: 2020-01-14 14:03:37.444910
-
 """
 from alembic import op
 import sqlalchemy as sa
@@ -23,33 +21,41 @@ def upgrade():
     # op.execute(f'ALTER TYPE gendertype RENAME TO _gendertype')
     # op.execute(f'ALTER TYPE statustype RENAME TO _statustype')
     op.create_table('roles',
-    sa.Column('created_on', sa.DateTime(), nullable=True),
-    sa.Column('updated_on', sa.DateTime(), nullable=True),
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('role', sa.String(length=250), nullable=False),
-    sa.Column('code', sa.Integer(), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('code'),
-    sa.UniqueConstraint('role')
-    )
+                    sa.Column('created_on', sa.DateTime(), nullable=True),
+                    sa.Column('updated_on', sa.DateTime(), nullable=True),
+                    sa.Column('id', sa.Integer(),
+                              autoincrement=True, nullable=False),
+                    sa.Column('role', sa.String(length=250), nullable=False),
+                    sa.Column('code', sa.Integer(), nullable=False),
+                    sa.PrimaryKeyConstraint('id'),
+                    sa.UniqueConstraint('code'),
+                    sa.UniqueConstraint('role')
+                    )
     op.create_table('users',
-    sa.Column('created_on', sa.DateTime(), nullable=True),
-    sa.Column('updated_on', sa.DateTime(), nullable=True),
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('user_name', sa.String(length=250), nullable=False),
-    sa.Column('first_name', sa.String(length=250), nullable=False),
-    sa.Column('last_name', sa.String(length=250), nullable=False),
-    sa.Column('gender', sa.Enum('male', 'female', name='gendertype'), nullable=False),
-    sa.Column('dob', sa.Date(), nullable=False),
-    sa.Column('phone_no', sa.String(length=50), nullable=False),
-    sa.Column('email', sa.String(length=250), nullable=True),
-    sa.Column('password', sa.Text(), nullable=True),
-    sa.Column('role', sa.Integer(), nullable=False),
-    sa.Column('status', sa.Enum('active', 'inactive', 'blocked', 'archived', 'deleted', name='statustype'), nullable=False),
-    sa.ForeignKeyConstraint(['role'], ['roles.code'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('user_name')
-    )
+                    sa.Column('created_on', sa.DateTime(), nullable=True),
+                    sa.Column('updated_on', sa.DateTime(), nullable=True),
+                    sa.Column('id', sa.Integer(),
+                              autoincrement=True, nullable=False),
+                    sa.Column('user_name', sa.String(
+                        length=250), nullable=False),
+                    sa.Column('first_name', sa.String(
+                        length=250), nullable=False),
+                    sa.Column('last_name', sa.String(
+                        length=250), nullable=False),
+                    sa.Column('gender', sa.Enum('male', 'female',
+                                                name='gendertype'), nullable=False),
+                    sa.Column('dob', sa.Date(), nullable=False),
+                    sa.Column('phone_no', sa.String(
+                        length=50), nullable=False),
+                    sa.Column('email', sa.String(length=250), nullable=True),
+                    sa.Column('password', sa.Text(), nullable=True),
+                    sa.Column('role', sa.Integer(), nullable=False),
+                    sa.Column('status', sa.Enum('active', 'inactive', 'blocked',
+                                                'archived', 'deleted', name='statustype'), nullable=False),
+                    sa.ForeignKeyConstraint(['role'], ['roles.code'], ),
+                    sa.PrimaryKeyConstraint('id'),
+                    sa.UniqueConstraint('user_name')
+                    )
     # op.execute(f'DROP TYPE _gendertype')
     # op.execute(f'DROP TYPE _statustype')
     # ### end Alembic commands ###
