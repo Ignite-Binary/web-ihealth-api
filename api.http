@@ -1,6 +1,6 @@
 ### User Login ####
 
-POST https://127.0.0.1:5000/users/login
+POST http://127.0.0.1:5000/users/login
 Content-Type: application/json
 
 {
@@ -93,6 +93,43 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk4NTc3O
 
 {
     "country": "kenya"
+}
+
+### DELETE patient profile ####
+
+DELETE  http://127.0.0.1:5000/profiles/patients/3
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzk3Njk1MzEsIm5iZiI6MTU3OTc2OTUzMSwianRpIjoiNGNmNjI1Y2QtMzJiOS00YWM4LWJmMGQtN2M3ODY1YzQyYzdkIiwiZXhwIjoxNTc5NzcwNDMxLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.uIluIBmCp3SJTS64T0b0TyZPuZ_LoZSOe-8hN0J4qJU
+
+#####################################################
+#####################################################
+
+### GET doctor profiles ###
+http://127.0.0.1:5000/profiles/doctors
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODAyMzQyMjMsIm5iZiI6MTU4MDIzNDIyMywianRpIjoiYzhhM2NkMmMtZTEyNy00MDY3LThhZTQtNTZkZWM3ZDVmZDBlIiwiZXhwIjoxNTgwMjM1MTIzLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.XV8Sns3KuYAcIYYimOFFHGAs7XZbE64dGEiX8XY1YAU
+
+### CREATE doctor profile ####
+POST http://127.0.0.1:5000/profiles/doctors
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODAyMzc3MTcsIm5iZiI6MTU4MDIzNzcxNywianRpIjoiYjZiZjYxYzEtYTQwNy00YjllLWEzY2UtOTRlNDE0MzkyNjBjIiwiZXhwIjoxNTgwMjM4NjE3LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.nNsTMwX0r1Hi33nirfKbaXjfNOaATLyY9FhXY0HCjjs
+
+{
+    "specialty": "orphthalmologist",
+    "bio": "I am available all days of the week"
+}
+
+### GET specific doctor profile ###
+http://127.0.0.1:5000/profiles/doctors/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODAyNzU2MzYsIm5iZiI6MTU4MDI3NTYzNiwianRpIjoiOGM5ZGVjZDUtZjVlNS00MzYwLWEyMDYtM2UzMGU1N2FiYjg1IiwiZXhwIjoxNTgwMjc2NTM2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.UiExJlpdbdtlYDLmJh1oubZwUbc7X8tE4XU79nRqmuo
+
+### UPDATE doctor profile ####
+
+PUT http://127.0.0.1:5000/profiles/doctors/1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODAyNzY3NTAsIm5iZiI6MTU4MDI3Njc1MCwianRpIjoiNzI0ZjBhZGMtNTNmMy00NDVjLWEzMGQtM2IwMjNjMWFhMTYyIiwiZXhwIjoxNTgwMjc3NjUwLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsicm9sZSI6ImFkbWluIn19.ycRj8xm07yVm64Vx6B3CT8YE0_2vXoVc8KSAYmypvPQ
+
+{
+    "specialty": "opthalmologist"
 }
 
 ### DELETE patient profile ####

@@ -125,32 +125,6 @@ stages:
 
 
 
-- stage: Test
-  displayName: 'Deploy Web App to test environment'
-  dependsOn: Dev
-  condition: succeeded()
-  jobs:
-  - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentNameTest)
-    strategy:
-      runOnce:
-        deploy:
-          steps:   
-
-          - task: WhiteSource Bolt@20
-
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : ignite-backend-Test'
-            inputs:
-              appType: webAppLinux
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppNameTest)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-
-
-
 
 
 

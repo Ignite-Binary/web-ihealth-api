@@ -1,25 +1,25 @@
 from flask_restplus import Resource
 from helpers.roles_helper import role_validation, role_schema
 from api.models.roles_model import Role as RoleModel
-from api import role_ns
+from api import user_ns
 from utitilies.database import update_fields, db
 from utitilies.auth import auth_user
 
 
-role_schema = role_ns.model('Role', role_schema)
+role_schema = user_ns.model('Role', role_schema)
 
 
-@role_ns.route('')
+@user_ns.route('/roles')
 class Roles(Resource):
     @auth_user(['admin'])
-    @role_ns.marshal_list_with(role_schema, envelope='roles')
+    @user_ns.marshal_list_with(role_schema, envelope='roles')
     def get(self):
         roles = RoleModel.query.all()
         return roles
 
     @auth_user(['admin'])
-    @role_ns.expect(role_schema)
-    @role_ns.marshal_with(role_schema, envelope='role')
+    @user_ns.expect(role_schema)
+    @user_ns.marshal_with(role_schema, envelope='role')
     def post(self):
         role = role_validation()
         role_name = RoleModel.query.filter_by(
@@ -31,25 +31,25 @@ class Roles(Resource):
                 existing_role = role_name.role
             except Exception:
                 existing_role = role_code.code
-            role_ns.abort(400, f"role {existing_role} already exists!")
+            user_ns.abort(400, f"role {existing_role} already exists!")
         new_role = RoleModel(role)
         new_role.save()
         return new_role, 201
 
 
-@role_ns.route('/<int:role_id>')
+@user_ns.route('/roles/<int:role_id>')
 class Role(Resource):
     @auth_user(['admin'])
-    @role_ns.marshal_list_with(role_schema, envelope='role')
+    @user_ns.marshal_list_with(role_schema, envelope='role')
     def get(self, role_id):
         role = RoleModel.query.get_or_404(role_id, 'Role not Found')
         return role
 
     @auth_user(['admin'])
-    @role_ns.expect(role_schema)
-    @role_ns.marshal_with(role_schema, envelope='role')
+    @user_ns.expect(role_schema)
+    @user_ns.marshal_with(role_schema, envelope='role')
     def put(self, role_id):
-        role_updates = role_ns.payload
+        role_updates = user_ns.payload
         role = RoleModel.query.get_or_404(role_id, 'Role not Found')
         role_validation(False)
         updated_role = update_fields(role, role_updates)
@@ -57,7 +57,7 @@ class Role(Resource):
             updated_role.save()
         except Exception:
             db.session.rollback()
-            role_ns.abort(403, f"role {role} code cannot be changed!")
+            user_ns.abort(403, f"role {role} code cannot be changed!")
         return updated_role
 
     @auth_user(['admin'])
@@ -67,5 +67,5 @@ class Role(Resource):
             role.delete()
         except Exception:
             db.session.rollback()
-            role_ns.abort(403, f"role {role} cannot be deleted!")
+            user_ns.abort(403, f"role {role} cannot be deleted!")
         return {"message": "role deleted"}, 204
